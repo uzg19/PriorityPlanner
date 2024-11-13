@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .quadrant {
+            border-radius: 8px;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        .important-urgent { background-color: #e74c3c; }
+        .important-not-urgent { background-color: #3498db; }
+        .not-important-urgent { background-color: #f1c40f; color: #333; }
+        .not-important-not-urgent { background-color: #95a5a6; }
+        h2 {
+            margin-top: 0;
+        }
+        .task-input {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+        }
+        .task-input input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .task-input button {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            background-color: #2ecc71;
+            color: white;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quadrant important-urgent">
+            <h2>Important & Urgent</h2>
+            <ul id="important-urgent-list"></ul>
+            <div class="task-input">
+                <input type="text" id="important-urgent-input" placeholder="Add a task">
+                <button onclick="addTask('important-urgent')">Add</button>
+            </div>
+        </div>
+        <div class="quadrant important-not-urgent">
+            <h2>Important & Not Urgent</h2>
+            <ul id="important-not-urgent-list"></ul>
+            <div class="task-input">
+                <input type="text" id="important-not-urgent-input" placeholder="Add a task">
+                <button onclick="addTask('important-not-urgent')">Add</button>
+            </div>
+        </div>
+        <div class="quadrant not-important-urgent">
+            <h2>Not Important & Urgent</h2>
+            <ul id="not-important-urgent-list"></ul>
+            <div class="task-input">
+                <input type="text" id="not-important-urgent-input" placeholder="Add a task">
+                <button onclick="addTask('not-important-urgent')">Add</button>
+            </div>
+        </div>
+        <div class="quadrant not-important-not-urgent">
+            <h2>Not Important & Not Urgent</h2>
+            <ul id="not-important-not-urgent-list"></ul>
+            <div class="task-input">
+                <input type="text" id="not-important-not-urgent-input" placeholder="Add a task">
+                <button onclick="addTask('not-important-not-urgent')">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addTask(category) {
+            const input = document.getElementById(`${category}-input`);
+            const taskText = input.value.trim();
+
+            if (taskText) {
+                const list = document.getElementById(`${category}-list`);
+                const listItem = document.createElement('li');
+                listItem.textContent = taskText;
+                list.appendChild(listItem);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
